@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" client="site" method="upgrade">
+	<name>mod_mapscf</name>
+	<author>Garstud</author>
+	<creationDate>March 2018</creationDate>
+	<authorEmail>dev@garstud.com</authorEmail>
+	<authorUrl>http://www.garstud.com</authorUrl>
+	<copyright>Copyright Info</copyright>
+	<license>License Info</license>
+	<version>0.1.0</version>
+	<description>MOD_MAPSCF_DESC</description>
+	<files>
+		<filename module="mod_mapscf">mod_mapscf.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+				<field type="spacer" name="sepLimit" class="label label-info input-xxlarge" label="Paramètrage standard" />
+        
+				<field name="show_profiles_types" type="sql" default="" label="Types de profils" multiple="true"
+					description="Sélectionner les types de profils à afficher"
+					query="SELECT id, label FROM #__fields WHERE state=1 ORDER BY label" 
+					key_field="id" value_field="label" />
+
+				<field name="show_abbr_online" type="radio" default="1"
+					class="btn-group btn-group-yesno" 	label="Infobulle aide en-ligne"
+					description="Affiche une infobulle d'aide sur les mots soulignés en pointillés">
+						<option value="1">JSHOW</option>
+						<option value="0">JHIDE</option>
+				</field>
+
+				<field type="spacer" name="sepProgress" class="label label-info input-xxlarge" label="Personnalisation d'affichage des barres graphiques" />
+				<field name="show_progressbar_profiles" type="radio" default="1"
+					class="btn-group btn-group-yesno" 	label="Barre graphique des profils"
+					description="Affiche la barre graphique multicolore qui montre la répartition par type de profils">
+						<option value="1">JSHOW</option>
+						<option value="0">JHIDE</option>
+				</field>
+
+				<field
+					name="limit_percent" type="text"  showon="show_progressbar_textes:1,2"
+					label="Limite affichage pourcentage" default="9"
+					description="Limite de la valeur en pourcentage (%) au dessous de laquelle le nombre de pourcentage ne sera pas affiché dans la barre" />
+
+			</fieldset>
+			
+			<fieldset name="advanced">
+				<field type="spacer" name="sepLimit" class="label label-info input-xxlarge" label="Limite et tri des types à afficher" />
+				<field name="list_count" type="list"
+					default="" label="Nb Profils max"
+					description="Définir le nombre de profils à afficher maximum">
+					<option	value="1">1</option>
+					<option	value="2">2</option>
+					<option	value="3">3</option>
+					<option	value="4">4</option>
+					<option	value="5">5</option>
+				</field>
+
+				<field type="spacer" name="sepDisplay" class="label label-info input-xxlarge" label="Affichage du tableau de tableau de bord" />
+				<field
+					name="layout" type="modulelayout"
+					label="Type de mise en page"
+					description="Utiliser la mise en page souhaitée" />
+				<field
+					name="moduleclass_sfx" type="text"
+					label="Suffixe de classe CSS"
+					description="Suffixe à ajouter à la classe CSS du module pour le personnaliser" />
+			</fieldset>
+
+		</fields>
+	</config>
+</extension>
